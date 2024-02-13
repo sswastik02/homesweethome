@@ -18,7 +18,7 @@ echo "###############################################"
 echo "             SETTING UP TOOLS"
 echo "###############################################"
 sudo apt update -y
-sudo apt install -y build-essential vim vim-gtk zsh git tmux guake curl bat jq
+sudo apt install -y build-essential vim vim-gtk zsh git tmux guake curl bat jq xclip
 sudo apt-get remove irqbalance
 
 echo "###############################################"
