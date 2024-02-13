@@ -19,7 +19,14 @@ echo "             SETTING UP TOOLS"
 echo "###############################################"
 sudo apt update -y
 sudo apt install -y build-essential vim vim-gtk zsh git tmux guake curl bat jq xclip
-sudo apt-get remove irqbalance
+
+sudo sh -c "$(curl -fsSL https://get.docker.com -o install-docker.sh)"
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+docker run hello-world
+sudo systemctl enable docker.service
+sudo systemctl enable containerd.service
 
 echo "###############################################"
 echo "            SETTING UP ZSH INTERFACE"
