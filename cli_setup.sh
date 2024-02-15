@@ -18,7 +18,7 @@ echo "###############################################"
 echo "             SETTING UP TOOLS"
 echo "###############################################"
 sudo apt update -y
-sudo apt install -y build-essential vim vim-gtk zsh git tmux guake curl bat jq xclip
+sudo apt install -y build-essential vim vim-gtk zsh git tmux guake curl bat jq xclip htop
 
 sudo sh -c "$(curl -fsSL https://get.docker.com -o install-docker.sh)"
 sudo groupadd docker
@@ -62,6 +62,7 @@ echo -e "$bold Adding Aliases $normal\n"
 echo "alias clear=\"clear -x\"" >> ~/.zshrc
 echo "alias wipe=\"clear\"" >> ~/.zshrc
 echo "source ~/.p10k.zsh" >> ~/.zshrc # File downloaded at a later stage
+echo "export PATH=\"$HOME/.local/bin:$PATH\"" >> ~/.zshrc
 
 echo -e "$bold Changing Default Shell to ZSH $normal\n"
 chsh -s $(which zsh)
