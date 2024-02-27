@@ -43,4 +43,8 @@ RESPONSE=$(curl -L \
   -H "Authorization: Bearer $GH_TOKEN"  \
   -H "X-GitHub-Api-Version: 2022-11-28" \
   "https://api.github.com/user/gpg_keys/$GPG_ID")
+
+rm -rf ~/.config/nvim
+rm -rf ~/.local/share/nvim
+
 sudo timeshift --restore

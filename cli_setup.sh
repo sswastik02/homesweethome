@@ -169,6 +169,18 @@ git config --global commit.gpgsign true
 git config --global user.email $noreply_email
 git config --global user.name $git_login
 
+echo "###############################################"
+echo "            SETTING UP NVIM CONFIG"
+echo "###############################################"
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+sudo rm -rf /opt/nvim
+sudo tar -C /opt -xzf nvim-linux64.tar.gz
+
+echo 'export PATH="$PATH:/opt/nvim-linux64/bin"' >> ~/.zshrc
+export PATH="$PATH:/opt/nvim-linux64/bin"
+
+git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
+
 echo "=========================================================================================================================="
 echo "Please setup guake Default Interpreter to $bold/usr/bin/zsh$normal,$bold Keyboard shortcuts$normal, and $bold fonts$normal"
 echo "Advisable to logout first"
