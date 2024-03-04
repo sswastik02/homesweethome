@@ -75,7 +75,7 @@ echo -e "$bold Installing tmux plugins manager$normal\n"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 echo -e "$bold Installing custom .tmux.conf$normal\n"
-wget -q https://gist.githubusercontent.com/sswastik02/9917bb3a6d150988a3effa967201d92a/raw/51363d9f1ff73cd772d56946517e51bd52039d8a/.tmux.conf -O ~/.tmux.conf
+wget -q https://gist.githubusercontent.com/sswastik02/9917bb3a6d150988a3effa967201d92a/raw/5aab4ea2fdafab661e4fe522f79ae0ac80718d94/.tmux.conf -O ~/.tmux.conf
 
 tmux source ~/.tmux.conf
 
