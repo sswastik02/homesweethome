@@ -1,0 +1,47 @@
+[general]
+compat-delete='delete-sequence'
+copy-on-select=true
+default-shell='/usr/bin/tmux'
+display-n=0
+display-tab-names=0
+gtk-prefer-dark-theme=true
+gtk-use-system-default-theme=false
+hide-tabs-if-one-tab=true
+history-size=1000
+infinite-history=true
+max-tab-name-length=100
+mouse-display=true
+open-tab-cwd=true
+prompt-on-quit=true
+quick-open-command-line='xdg-open %(file_path)s'
+quick-open-enable=true
+restore-tabs-notify=true
+restore-tabs-startup=true
+save-tabs-when-changed=true
+scroll-keystroke=true
+start-at-login=true
+tab-close-buttons=true
+use-audible-bell=true
+use-default-font=false
+use-popup=true
+use-scrollbar=true
+use-trayicon=true
+window-halignment=0
+window-height=50
+window-losefocus=false
+window-refocus=true
+window-tabbar=false
+window-width=100
+
+[keybindings/global]
+show-hide='<Primary>Escape'
+
+[style/background]
+transparency=90
+
+[style/font]
+allow-bold=true
+bold-is-bright=true
+palette='#000000000000:#aaaa00000000:#0000aaaa0000:#aaaa55550000:#00000000aaaa:#aaaa0000aaaa:#0000aaaaaaaa:#aaaaaaaaaaaa:#555555555556:#ffff55555555:#5555ffff5555:#ffffffff5555:#55555555ffff:#ffff5555ffff:#5555ffffffff:#ffffffffffff:#ffffffffffff:#000000000000'
+palette-name='Linux Console'
+style='MesloLGS NF 16'
