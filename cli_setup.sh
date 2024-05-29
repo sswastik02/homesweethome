@@ -184,6 +184,12 @@ setup_nvim() {
 
 }
 
+disable_sudo_if_not_present() {
+  if ! command -v sudo >/dev/null 2>&1; then
+    alias sudo='';
+  fi
+}
+
 usage() {
 
   echo "Usage: $0 [OPTIONS]"
@@ -207,6 +213,7 @@ if [ $? != 0 ]; then
 fi
 
 eval set -- "$OPTIONS"
+disable_sudo_if_not_present
 
 while true; do
   case "$1" in
