@@ -44,7 +44,7 @@ setup_zsh() {
   wget -q https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf -P ~/.fonts
 
   echo -e "$bold Setting up personal .p10k.zsh$normal"
-  wget -q https://gist.githubusercontent.com/sswastik02/9917bb3a6d150988a3effa967201d92a/raw/cc2a7dedc901233db366a967a442f9ca4a2203dd/.p10k.zsh ~/.p10k.zsh
+  wget -q https://raw.githubusercontent.com/sswastik02/homesweethome/main/.p10k.zsh ~/.p10k.zsh
 
   echo -e "$bold Adding Aliases $normal\n"
   echo "alias clear=\"clear -x\"" >> ~/.zshrc
@@ -58,7 +58,7 @@ setup_zsh() {
 
 setup_guake() {
   echo -e "$bold Setting up personal guake preferences$normal"
-  wget -q https://gist.githubusercontent.com/sswastik02/9917bb3a6d150988a3effa967201d92a/raw/cc2a7dedc901233db366a967a442f9ca4a2203dd/myguakeprefs -O /tmp/myguakeprefs
+  wget -q https://raw.githubusercontent.com/sswastik02/homesweethome/main/myguakeprefs -O /tmp/myguakeprefs
   guake --restore-preferences /tmp/myguakeprefs
 }
 
@@ -71,7 +71,7 @@ setup_tmux() {
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
   echo -e "$bold Installing custom .tmux.conf$normal\n"
-  wget -q https://gist.githubusercontent.com/sswastik02/9917bb3a6d150988a3effa967201d92a/raw/5aab4ea2fdafab661e4fe522f79ae0ac80718d94/.tmux.conf -O ~/.tmux.conf
+  wget -q https://raw.githubusercontent.com/sswastik02/homesweethome/main/.tmux.conf -O ~/.tmux.conf
 
   tmux source ~/.tmux.conf
 
