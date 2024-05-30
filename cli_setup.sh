@@ -211,39 +211,46 @@ if [ $? != 0 ]; then
     usage
     exit 1
 fi
+atleastOneValidFlag=""
 
 eval set -- "$OPTIONS"
 disable_sudo_if_not_present
-
 while true; do
   case "$1" in
     -t | --tools)
       setup_tools
+      atleastOneValidFlag="true"
       shift
       ;;
     -z | --zsh)
       setup_zsh
+      atleastOneValidFlag="true"
       shift
       ;;
     -e | --guake)
       setup_guake
+      atleastOneValidFlag="true"
       shift
       ;;
     -x | --tmux)
       setup_tmux
+      atleastOneValidFlag="true"
       shift
       ;;
     -n | --nvim)
       setup_nvim
+      atleastOneValidFlag="true"
       shift
       ;;
     -g | --git)
       GH_TOKEN="$2"
       setup_git
+      atleastOneValidFlag="true"
       shift 2
       ;;
     -h | --help)
       usage
+      atleastOneValidFlag="true"
       shift
       ;;
     --)
@@ -258,5 +265,7 @@ while true; do
   esac
 done
 
-
+if [ -z $atleastOneValidFlag ]; then
+  usage
+fi
 
