@@ -3,6 +3,8 @@
 bold=$(tput bold)
 normal=$(tput sgr0)
 
+source <(wget -qO- https://raw.githubusercontent.com/sswastik02/bash-tui-toolkit/main/src/prompts.sh)
+
 setup_tools() {
   echo "###############################################"
   echo "             SETTING UP TOOLS"
@@ -112,14 +114,14 @@ setup_git() {
 
   noreply_email=$(curl -sL \
     -H "Accept: application/vnd.github+json" \
-    -H "Authorization: Bearer `cat .github_token`" \
+    -H "Authorization: Bearer ${GH_TOKEN}" \
     -H "X-GitHub-Api-Version: 2022-11-28" \
     https://api.github.com/user \
     | jq -r '"\(.id)+\(.login)@users.noreply.github.com"')
 
   git_login=$(curl -sL \
     -H "Accept: application/vnd.github+json" \
-    -H "Authorization: Bearer `cat .github_token`" \
+    -H "Authorization: Bearer ${GH_TOKEN}" \
     -H "X-GitHub-Api-Version: 2022-11-28" \
     https://api.github.com/user \
     | jq -r '.login')
@@ -193,6 +195,7 @@ disable_sudo_if_not_present() {
 usage() {
 
   echo "Usage: $0 [OPTIONS]"
+  echo "If no options specified, script executes in interactive mode"
   echo "Options:"
   echo "-t, --tools     setup tools"
   echo "-z, --zsh       setup zsh"
@@ -204,7 +207,19 @@ usage() {
 
 }
 
-OPTIONS=$(getopt -o genzxth --long tools,zsh,guake,tmux,nvim,git:,help -n 'parse-options' -- "$@")
+choices=("tools" "zsh" "guake" "tmux" "nvim" "git" "help")
+
+if [[ $# -eq 0 ]]; then
+  option_idx=$(checkbox "Select steps to be followed" ${choices[@]})
+  options_selected=()
+  for i in $option_idx; do
+    options_selected+=(--${choices[$i]})
+  done
+else
+  options_selected=$@
+fi
+
+OPTIONS=$(getopt -o genzxth --long tools,zsh,guake,tmux,nvim,git:,help -n 'parse-options' -- "$options_selected")
 
 if [ $? != 0 ]; then
     echo "Failed to parse options." >&2
