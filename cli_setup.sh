@@ -14,8 +14,9 @@ setup_tools() {
   sudo bash -c "$(curl -fsSL https://get.docker.com)"
   sudo groupadd docker
   sudo usermod -aG docker $USER
-  newgrp docker
-  docker run hello-world
+  newgrp docker <<END
+    docker run hello-world
+END
   sudo systemctl enable docker.service
   sudo systemctl enable containerd.service
 }
