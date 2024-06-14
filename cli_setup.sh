@@ -12,7 +12,7 @@ setup_tools() {
   sudo apt update -y
   sudo apt install -y build-essential vim vim-gtk zsh git tmux guake curl bat jq xclip htop
 
-  sudo sh -c "$(curl -fsSL https://get.docker.com -o install-docker.sh)"
+  sudo bash -c "$(curl -fsSL https://get.docker.com)"
   sudo groupadd docker
   sudo usermod -aG docker $USER
   newgrp docker
