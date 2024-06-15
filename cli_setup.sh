@@ -27,6 +27,7 @@ setup_zsh() {
   echo "###############################################"
   echo "            SETTING UP ZSH INTERFACE"
   echo "###############################################"
+  sudo -E apt update -y
   sudo -E apt install -y zsh
   echo -e "$bold Installing Oh-My-Zsh $normal\n"
   bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
@@ -66,6 +67,7 @@ setup_guake() {
   echo "            SETTING UP GUAKE TERMINAL"
   echo "###############################################"
   echo -e "$bold Setting up personal guake preferences$normal"
+  sudo -E apt update -y
   sudo -E apt install -y guake
   wget -q https://raw.githubusercontent.com/sswastik02/homesweethome/main/myguakeprefs -O /tmp/myguakeprefs
   guake --restore-preferences /tmp/myguakeprefs
@@ -75,6 +77,7 @@ setup_tmux() {
   echo "###############################################"
   echo "            SETTING UP TMUX CONFIG"
   echo "###############################################"
+  sudo -E apt update -y
   sudo -E apt install -y tmux 
   echo -e "$bold Installing tmux plugins manager$normal\n"
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -182,6 +185,7 @@ setup_nvim() {
   echo "###############################################"
   echo "            SETTING UP NVIM CONFIG"
   echo "###############################################"
+  sudo -E apt update -y
   sudo -E apt install -y vim vim-gtk
   curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
   sudo rm -rf /opt/nvim
