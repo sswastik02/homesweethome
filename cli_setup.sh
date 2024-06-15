@@ -221,11 +221,12 @@ if [[ $# -eq 0 ]]; then
   for i in $option_idx; do
     options_selected+=(--${choices[$i]})
   done
+  options_selected=${options_selected[@]}
 else
   options_selected=$@
 fi
 
-OPTIONS=$(getopt -o genzxth --long tools,zsh,guake,tmux,nvim,git:,help -n 'parse-options' -- "$options_selected")
+OPTIONS=$(getopt -o genzxth --long tools,zsh,guake,tmux,nvim,git:,help -n 'parse-options' -- $options_selected)
 
 if [ $? != 0 ]; then
     echo "Failed to parse options." >&2
