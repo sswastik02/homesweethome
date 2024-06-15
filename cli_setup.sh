@@ -190,7 +190,7 @@ setup_nvim() {
   echo 'export PATH="$PATH:/opt/nvim-linux64/bin"' >> ~/.zshrc
   export PATH="$PATH:/opt/nvim-linux64/bin"
 
-  git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
+  git clone https://github.com/NvChad/starter ~/.config/nvim --depth 1 && nvim
 
 }
 
