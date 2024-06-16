@@ -4,6 +4,8 @@ bold=$(tput bold)
 normal=$(tput sgr0)
 
 source <(wget -qO- https://raw.githubusercontent.com/sswastik02/bash-tui-toolkit/main/src/prompts.sh)
+source <(wget -qO- https://raw.githubusercontent.com/sswastik02/bash-tui-toolkit/main/src/user_feedback.sh)
+source <(wget -qO- https://raw.githubusercontent.com/sswastik02/bash-tui-toolkit/main/src/platform_helpers.sh)
 
 export DEBIAN_FRONTEND=noninteractive
 
@@ -92,10 +94,27 @@ setup_tmux() {
   sudo update-locale LANG=en_US.UTF-8
 }
 
+validate_gh_token() {
+  if ! [[ "$1" =~ ^ghp_[a-zA-Z0-9]{36}$ ]]; then
+    echo "Invalid GH_TOKEN: $1"
+    exit 1
+  fi
+}
+
 setup_git() {
+  PAT_URL="https://github.com/settings/tokens/new?scopes=admin:public_key,admin:gpg_key,read:user"
   echo "###############################################"
   echo "            SETTING UP GIT CONFIG"
   echo "###############################################"
+  sudo -E apt update -y
+  sudo -E apt install jq -y
+  if ! (validate_gh_token $GH_TOKEN) ; then
+    open_link $PAT_URL
+    sleep 1 # Wait for browser to open
+    echo "If broswer does not open up, please navigate to $PAT_URL"
+    GH_TOKEN=$(with_validate 'password "Enter GitHub Token"' validate_gh_token)
+  fi
+
   # Reference
   # https://gist.github.com/petersellars/c6fff3657d53d053a15e57862fc6f567
 
@@ -226,6 +245,9 @@ if [[ $# -eq 0 ]]; then
   options_selected=()
   for i in $option_idx; do
     options_selected+=(--${choices[$i]})
+    if [ "${choices[$i]}" = "git" ]; then
+      options_selected+=("<PAT>") # Placeholder to trigger reenter of GH_TOKEN
+    fi
   done
   options_selected=${options_selected[@]}
 else
