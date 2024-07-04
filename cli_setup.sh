@@ -107,7 +107,7 @@ setup_git() {
   echo "            SETTING UP GIT CONFIG"
   echo "###############################################"
   sudo -E apt update -y
-  sudo -E apt install jq -y
+  sudo -E apt install jq gpg -y
   if ! (validate_gh_token $GH_TOKEN) ; then
     open_link $PAT_URL
     sleep 1 # Wait for browser to open
